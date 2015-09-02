@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>103CAF83-D276-4B5D-8D1D-5DDC7C865FD1</string>
+	<key>IDESourceControlProjectName</key>
+	<string>WebViewTest-iOS</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>6B78E75615BB176356BEC5BF622B4F40419A183B</key>
+		<string>github.com:akolio/WebViewNativeBridge-web.git</string>
+		<key>6F5AF18A6F1EF4BC2ACA9CE5474916272E1F5D07</key>
+		<string>github.com:akolio/WebViewNativeBridge-iOS.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>WebViewTest-iOS.xcodeproj</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>6B78E75615BB176356BEC5BF622B4F40419A183B</key>
+		<string>../..web/</string>
+		<key>6F5AF18A6F1EF4BC2ACA9CE5474916272E1F5D07</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>github.com:akolio/WebViewNativeBridge-iOS.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>6F5AF18A6F1EF4BC2ACA9CE5474916272E1F5D07</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6B78E75615BB176356BEC5BF622B4F40419A183B</string>
+			<key>IDESourceControlWCCName</key>
+			<string>web</string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>6F5AF18A6F1EF4BC2ACA9CE5474916272E1F5D07</string>
+			<key>IDESourceControlWCCName</key>
+			<string>WebViewTest-iOS</string>
+		</dict>
+	</array>
+</dict>
+</plist>
