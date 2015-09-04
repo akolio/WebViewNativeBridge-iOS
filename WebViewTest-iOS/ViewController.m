@@ -53,6 +53,10 @@
         [weakSelf yesNoWithCallbackId:callbackId arguments:arguments];
     }];
     
+    [self.webViewCommandHandler addCommandForName:@"images" command:^(NSString *callbackId, id arguments) {
+        [weakSelf showImagePickerWithCallbackId:callbackId arguments:arguments];
+    }];
+    
 }
 
 - (void)alertJs {
@@ -99,7 +103,11 @@
     
 }
 
-
+-(void)showImagePickerWithCallbackId:(NSString *)callbackId arguments:(NSString *)arguments {
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
 
 #pragma mark - UIWebViewDelegate
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
