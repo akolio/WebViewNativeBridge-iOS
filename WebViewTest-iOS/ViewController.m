@@ -15,35 +15,13 @@
 
 @implementation ViewController
 
--(WKUserContentController *)createWKUserContentController{
-    self.webViewLogMessageHandler = [[WebViewLogMessageHandler alloc] init];
-    self.webViewAppMessageHandler = [[WebViewAppMessageHandler alloc] init];
-    
-    __weak ViewController *weakSelf = self;
-    
-    [self.webViewAppMessageHandler addCommandForName:@"yesno" command:^(NSString *callbackId, id arguments) {
-        
-        [weakSelf yesNoWithCallbackId:callbackId arguments:arguments];
-        
-    }];
-    
-    
-    WKUserContentController *userContentController = [[WKUserContentController alloc] init];
-    [userContentController addScriptMessageHandler:self.webViewLogMessageHandler name:@"nativelog"];
-    [userContentController addScriptMessageHandler:self.webViewAppMessageHandler name:@"nativeapp"];
-    return userContentController;
-}
-
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    WKWebViewConfiguration *webViewConfig = [[WKWebViewConfiguration alloc] init];
-    WKUserContentController *userContentController = [self createWKUserContentController];
-    webViewConfig.userContentController = userContentController;
-    
-    self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:webViewConfig];
+    self.webView = [[UIWebView alloc] initWithFrame:self.view.frame];
     [self.view addSubview:self.webView];
+    
+    self.webView.delegate = self;
     
     NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"web"];
     path = [path stringByAppendingPathComponent:@"index.html"];
@@ -66,6 +44,14 @@
     jsButton.frame = CGRectMake(0, self.view.frame.size.height - 30, 100, 30);
     [jsButton setTitle:@"Native to JS" forState:UIControlStateNormal];
     [jsButton addTarget:self action:@selector(alertJs) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    self.webViewCommandHandler = [[WebViewCommandHandler alloc] init];
+    __weak ViewController *weakSelf = self;
+    
+    [self.webViewCommandHandler addCommandForName:@"yesno" command:^(NSString *callbackId, id arguments) {
+        [weakSelf yesNoWithCallbackId:callbackId arguments:arguments];
+    }];
     
 }
 
@@ -111,6 +97,43 @@
     
     [self presentViewController:alertController animated:YES completion:nil];
     
+}
+
+
+
+#pragma mark - UIWebViewDelegate
+- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType {
+    NSURL *url = request.URL;
+    NSLog(@"shouldStartLoadWithRequest: %@", url.description);
+    
+    if([@"mytestappscheme" isEqualToString:url.scheme]) {
+        NSString *host = url.host;
+        NSLog(@"mytestappscheme host: %@", host); // nativelog
+        
+        if([@"nativelog" isEqualToString:url.host]) {
+//            NSString *path = url.path;
+//            NSLog(@"mytestappscheme path: %@", path); // /{"logMessage":"log message from html/js"}
+            
+            NSArray *pathComponents = url.pathComponents;
+            NSString *jsonString = [pathComponents objectAtIndex:1];
+            NSLog(@"mytestappscheme jsonString: %@", jsonString); // {"logMessage":"log message from html/js"}
+
+        } else if([@"nativeapp" isEqualToString:url.host]) {
+            //            NSLog(@"mytestappscheme path: %@", url.path); // {"callbackId":1,"command":"yesno","arguments":"Hello from JS!"}
+
+            NSArray *pathComponents = url.pathComponents;
+            NSString *jsonString = [pathComponents objectAtIndex:1];
+            
+            NSError *err = nil;
+            NSDictionary *cmdInfo = [NSJSONSerialization JSONObjectWithData: [jsonString dataUsingEncoding:NSUTF8StringEncoding] options: NSJSONReadingMutableContainers error: &err];
+            [self.webViewCommandHandler handleCommand:cmdInfo];
+            
+        }
+        
+    }
+    
+    
+    return YES;
 }
 
 @end

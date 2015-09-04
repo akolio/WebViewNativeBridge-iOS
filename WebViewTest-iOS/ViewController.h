@@ -8,15 +8,12 @@
 
 #import <UIKit/UIKit.h>
 @import WebKit;
-#import "WebViewAppMessageHandler.h"
-#import "WebViewLogMessageHandler.h"
+#import "WebViewCommandHandler.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UIWebViewDelegate>
 
-//@property (nonatomic, readonly, copy) WKWebViewConfiguration webViewConfig;
-@property (strong, nonatomic) WKWebView *webView;
-@property (strong, nonatomic) WebViewLogMessageHandler *webViewLogMessageHandler;
-@property (strong, nonatomic) WebViewAppMessageHandler *webViewAppMessageHandler;
+@property (strong, nonatomic) UIWebView *webView;
+@property (strong, nonatomic) WebViewCommandHandler *webViewCommandHandler;
 
 
 @end

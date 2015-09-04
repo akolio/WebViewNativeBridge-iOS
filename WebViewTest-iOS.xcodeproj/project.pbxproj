@@ -15,9 +15,8 @@
 		1A70F7B61B93280A005A57E4 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1A70F7B41B93280A005A57E4 /* LaunchScreen.xib */; };
 		1A70F7C21B93280A005A57E4 /* WebViewTest_iOSTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70F7C11B93280A005A57E4 /* WebViewTest_iOSTests.m */; };
 		1A70F7CC1B932AA2005A57E4 /* web in Resources */ = {isa = PBXBuildFile; fileRef = 1A70F7CB1B932AA2005A57E4 /* web */; };
-		1A70F7D31B932B08005A57E4 /* WebViewAppMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70F7CE1B932B08005A57E4 /* WebViewAppMessageHandler.m */; };
 		1A70F7D41B932B08005A57E4 /* WebViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70F7D01B932B08005A57E4 /* WebViewHelper.m */; };
-		1A70F7D51B932B08005A57E4 /* WebViewLogMessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A70F7D21B932B08005A57E4 /* WebViewLogMessageHandler.m */; };
+		1A8AA61A1B99CDD700AB53B6 /* WebViewCommandHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 1A8AA6191B99CDD700AB53B6 /* WebViewCommandHandler.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,12 +44,10 @@
 		1A70F7C01B93280A005A57E4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1A70F7C11B93280A005A57E4 /* WebViewTest_iOSTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WebViewTest_iOSTests.m; sourceTree = "<group>"; };
 		1A70F7CB1B932AA2005A57E4 /* web */ = {isa = PBXFileReference; lastKnownFileType = folder; path = web; sourceTree = "<group>"; };
-		1A70F7CD1B932B08005A57E4 /* WebViewAppMessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewAppMessageHandler.h; sourceTree = "<group>"; };
-		1A70F7CE1B932B08005A57E4 /* WebViewAppMessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewAppMessageHandler.m; sourceTree = "<group>"; };
 		1A70F7CF1B932B08005A57E4 /* WebViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewHelper.h; sourceTree = "<group>"; };
 		1A70F7D01B932B08005A57E4 /* WebViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewHelper.m; sourceTree = "<group>"; };
-		1A70F7D11B932B08005A57E4 /* WebViewLogMessageHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewLogMessageHandler.h; sourceTree = "<group>"; };
-		1A70F7D21B932B08005A57E4 /* WebViewLogMessageHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewLogMessageHandler.m; sourceTree = "<group>"; };
+		1A8AA6181B99CDD700AB53B6 /* WebViewCommandHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewCommandHandler.h; sourceTree = "<group>"; };
+		1A8AA6191B99CDD700AB53B6 /* WebViewCommandHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewCommandHandler.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -93,12 +90,8 @@
 		1A70F7A41B93280A005A57E4 /* WebViewTest-iOS */ = {
 			isa = PBXGroup;
 			children = (
-				1A70F7CD1B932B08005A57E4 /* WebViewAppMessageHandler.h */,
-				1A70F7CE1B932B08005A57E4 /* WebViewAppMessageHandler.m */,
 				1A70F7CF1B932B08005A57E4 /* WebViewHelper.h */,
 				1A70F7D01B932B08005A57E4 /* WebViewHelper.m */,
-				1A70F7D11B932B08005A57E4 /* WebViewLogMessageHandler.h */,
-				1A70F7D21B932B08005A57E4 /* WebViewLogMessageHandler.m */,
 				1A70F7A91B93280A005A57E4 /* AppDelegate.h */,
 				1A70F7B41B93280A005A57E4 /* LaunchScreen.xib */,
 				1A70F7AA1B93280A005A57E4 /* AppDelegate.m */,
@@ -107,6 +100,8 @@
 				1A70F7AF1B93280A005A57E4 /* Main.storyboard */,
 				1A70F7B21B93280A005A57E4 /* Images.xcassets */,
 				1A70F7A51B93280A005A57E4 /* Supporting Files */,
+				1A8AA6181B99CDD700AB53B6 /* WebViewCommandHandler.h */,
+				1A8AA6191B99CDD700AB53B6 /* WebViewCommandHandler.m */,
 			);
 			path = "WebViewTest-iOS";
 			sourceTree = "<group>";
@@ -240,10 +235,9 @@
 			files = (
 				1A70F7AE1B93280A005A57E4 /* ViewController.m in Sources */,
 				1A70F7AB1B93280A005A57E4 /* AppDelegate.m in Sources */,
-				1A70F7D31B932B08005A57E4 /* WebViewAppMessageHandler.m in Sources */,
 				1A70F7D41B932B08005A57E4 /* WebViewHelper.m in Sources */,
+				1A8AA61A1B99CDD700AB53B6 /* WebViewCommandHandler.m in Sources */,
 				1A70F7A81B93280A005A57E4 /* main.m in Sources */,
-				1A70F7D51B932B08005A57E4 /* WebViewLogMessageHandler.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +434,7 @@
 				1A70F7C71B93280A005A57E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1A70F7C81B93280A005A57E4 /* Build configuration list for PBXNativeTarget "WebViewTest-iOSTests" */ = {
 			isa = XCConfigurationList;
@@ -448,6 +443,7 @@
 				1A70F7CA1B93280A005A57E4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

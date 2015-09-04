@@ -11,24 +11,18 @@
 @implementation WebViewHelper
 
 
-+(void)executeJavaScriptInWebView:(WKWebView *)webView withContent:(NSString *) content {
-    [webView evaluateJavaScript:content completionHandler:^(id result, NSError *error) {
-        if(error != nil) {
-            NSLog(@"%@ reason: %ld", error.localizedDescription, error.code);
-        }
-    }];
++(void)executeJavaScriptInWebView:(UIWebView *)webView withContent:(NSString *) content {
+    NSString *result = [webView stringByEvaluatingJavaScriptFromString:content];
+    NSLog(@"result of script: %@", result);
 }
 
-+(void)executeWebViewCallbackInWebView:(WKWebView *)webView WithCallbackId:(NSString *)callbackId andContent:(NSString *) content {
++(void)executeWebViewCallbackInWebView:(UIWebView *)webView WithCallbackId:(NSString *)callbackId andContent:(NSString *) content {
     NSError *error = nil;
     NSData *returnData = [NSJSONSerialization dataWithJSONObject:@{ @"callbackId" : callbackId, @"content" : content } options:kNilOptions error:&error];
     NSString *returnString = [[NSString alloc] initWithBytes:[returnData bytes] length:returnData.length encoding:NSUTF8StringEncoding];
     
-    [webView evaluateJavaScript:[NSString stringWithFormat:@"NativeBridge.handleCallback('%@');", returnString] completionHandler:^(id result, NSError *error) {
-        if(error != nil) {
-            NSLog(@"%@ reason: %ld", error.localizedDescription, error.code);
-        }
-    }];
+    NSString *result = [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"NativeBridge.handleCallback('%@');", returnString]];
+    NSLog(@"result of script: %@", result);
 }
 
 @end
