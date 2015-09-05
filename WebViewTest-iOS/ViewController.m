@@ -37,9 +37,56 @@
     return userContentController;
 }
 
+- (BOOL)okToCopyFileWithName:(NSString *)fileName {
+    NSArray *okTypes = @[@".html", @".js"];
+    
+    for (int i = 0; i < [okTypes count]; i++) {
+        if ([[fileName lowercaseString] hasSuffix:[okTypes objectAtIndex:i]]) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+- (void)copyFilesFromPath:(NSString *) origPath to:(NSString *)destPath {
+    NSError *error = nil;
+    NSFileManager *fileManager = [NSFileManager defaultManager];
+    
+    if (![fileManager createDirectoryAtPath:destPath withIntermediateDirectories:YES attributes:nil error:&error]) {
+        NSLog(@"Error creating directory: %@", [error localizedDescription]);
+    }
+    
+    NSArray *contents = [fileManager contentsOfDirectoryAtPath:origPath error:&error];
+    for (int i = 0; i < [contents count]; i++) {
+        NSString *fileName = [contents objectAtIndex:i];
+        if([self okToCopyFileWithName:fileName]) {
+            NSString *origFilePath = [origPath stringByAppendingPathComponent:fileName];
+            NSString *destFilePath = [destPath stringByAppendingPathComponent:fileName];
+            NSLog(@"Copying file from: %@ to: %@", origFilePath, destFilePath);
+            
+            if ([fileManager fileExistsAtPath:destFilePath]) {
+                if (![fileManager removeItemAtPath:destFilePath error:&error]) {
+                    NSLog(@"Error deleting file: %@", [error localizedDescription]);
+                }
+            }
+            if (![fileManager copyItemAtPath:origFilePath toPath:destFilePath error:&error]) {
+                NSLog(@"Error copying file: %@", [error localizedDescription]);
+            }
+        }
+        
+    }
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    NSString *origWebPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"web"];
+    NSString *tempWebPath = [NSTemporaryDirectory() stringByAppendingPathComponent:@"web"];
+    [self copyFilesFromPath:origWebPath to:tempWebPath];
+    NSString *origJsPath = [origWebPath stringByAppendingPathComponent:@"js"];
+    NSString *tempJsPath = [tempWebPath stringByAppendingPathComponent:@"js"];
+    [self copyFilesFromPath:origJsPath to:tempJsPath];
     
     WKWebViewConfiguration *webViewConfig = [[WKWebViewConfiguration alloc] init];
     WKUserContentController *userContentController = [self createWKUserContentController];
@@ -48,14 +95,15 @@
     self.webView = [[WKWebView alloc] initWithFrame:self.view.frame configuration:webViewConfig];
     [self.view addSubview:self.webView];
     
-    NSString *path = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"web"];
-    path = [path stringByAppendingPathComponent:@"index.html"];
-    NSLog(@"path: %@", path);
+//    NSString *indexHtmlPath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"web"];
+//    indexHtmlPath = [indexHtmlPath stringByAppendingPathComponent:@"index.html"];
+    NSString *indexHtmlPath = [tempWebPath stringByAppendingPathComponent:@"index.html"];
+    NSLog(@"loading html from: %@", indexHtmlPath);
     
     //    NSError *error = nil;
     //    NSLog(@"contents:\n%@", [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:&error]);
     
-    NSURL *url = [NSURL fileURLWithPath:path isDirectory:NO];
+    NSURL *url = [NSURL fileURLWithPath:indexHtmlPath isDirectory:NO];
     //    NSURL *url = [NSURL URLWithString:@"http://www.google.fi"];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url];
