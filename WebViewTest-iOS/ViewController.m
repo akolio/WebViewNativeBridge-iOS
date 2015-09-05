@@ -27,6 +27,9 @@
         
     }];
     
+    [self.webViewAppMessageHandler addCommandForName:@"images" command:^(NSString *callbackId, id arguments) {
+        [weakSelf showImagePickerWithCallbackId:callbackId arguments:arguments];
+    }];
     
     WKUserContentController *userContentController = [[WKUserContentController alloc] init];
     [userContentController addScriptMessageHandler:self.webViewLogMessageHandler name:@"nativelog"];
@@ -112,5 +115,12 @@
     [self presentViewController:alertController animated:YES completion:nil];
     
 }
+
+-(void)showImagePickerWithCallbackId:(NSString *)callbackId arguments:(NSString *)arguments {
+    UIImagePickerController *imagePicker = [[UIImagePickerController alloc] init];
+    imagePicker.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+    [self presentViewController:imagePicker animated:YES completion:nil];
+}
+
 
 @end
