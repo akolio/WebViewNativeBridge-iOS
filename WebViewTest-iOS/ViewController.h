@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 @import WebKit;
+@import MobileCoreServices;
 #import "WebViewAppMessageHandler.h"
 #import "WebViewLogMessageHandler.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 //@property (nonatomic, readonly, copy) WKWebViewConfiguration webViewConfig;
 @property (strong, nonatomic) WKWebView *webView;

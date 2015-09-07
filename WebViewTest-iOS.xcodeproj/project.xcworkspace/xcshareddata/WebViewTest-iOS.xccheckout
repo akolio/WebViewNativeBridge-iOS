@@ -7,7 +7,7 @@
 	<key>IDESourceControlProjectIdentifier</key>
 	<string>103CAF83-D276-4B5D-8D1D-5DDC7C865FD1</string>
 	<key>IDESourceControlProjectName</key>
-	<string>WebViewTest-iOS</string>
+	<string>project</string>
 	<key>IDESourceControlProjectOriginsDictionary</key>
 	<dict>
 		<key>6B78E75615BB176356BEC5BF622B4F40419A183B</key>
@@ -16,7 +16,7 @@
 		<string>github.com:akolio/WebViewNativeBridge-iOS.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>WebViewTest-iOS.xcodeproj</string>
+	<string>WebViewTest-iOS.xcodeproj/project.xcworkspace</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>6B78E75615BB176356BEC5BF622B4F40419A183B</key>
