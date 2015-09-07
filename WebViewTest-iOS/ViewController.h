@@ -8,9 +8,10 @@
 
 #import <UIKit/UIKit.h>
 @import WebKit;
+@import MobileCoreServices;
 #import "WebViewCommandHandler.h"
 
-@interface ViewController : UIViewController <UIWebViewDelegate>
+@interface ViewController : UIViewController <UIWebViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (strong, nonatomic) UIWebView *webView;
 @property (strong, nonatomic) WebViewCommandHandler *webViewCommandHandler;

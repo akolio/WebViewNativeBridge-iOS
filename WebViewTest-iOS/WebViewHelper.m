@@ -16,10 +16,12 @@
     NSLog(@"result of script: %@", result);
 }
 
-+(void)executeWebViewCallbackInWebView:(UIWebView *)webView WithCallbackId:(NSString *)callbackId andContent:(NSString *) content {
++(void)executeWebViewCallbackInWebView:(UIWebView *)webView WithCallbackId:(NSString *)callbackId andContent:(NSDictionary *) content {
     NSError *error = nil;
     NSData *returnData = [NSJSONSerialization dataWithJSONObject:@{ @"callbackId" : callbackId, @"content" : content } options:kNilOptions error:&error];
     NSString *returnString = [[NSString alloc] initWithBytes:[returnData bytes] length:returnData.length encoding:NSUTF8StringEncoding];
+    
+    //    NSLog(@"returning data to js: %@", returnString);
     
     NSString *result = [webView stringByEvaluatingJavaScriptFromString:[NSString stringWithFormat:@"NativeBridge.handleCallback('%@');", returnString]];
     NSLog(@"result of script: %@", result);

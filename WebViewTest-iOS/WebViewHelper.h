@@ -12,6 +12,6 @@
 @interface WebViewHelper : NSObject
 
 +(void)executeJavaScriptInWebView:(UIWebView *)webView withContent:(NSString *) content;
-+(void)executeWebViewCallbackInWebView:(UIWebView *)webView WithCallbackId:(NSString *)callbackId andContent:(NSString *) content;
++(void)executeWebViewCallbackInWebView:(UIWebView *)webView WithCallbackId:(NSString *)callbackId andContent:(NSDictionary *) content;
 
 @end
