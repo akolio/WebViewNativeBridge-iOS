@@ -146,7 +146,7 @@
                                 handler:^(UIAlertAction * action)
                                 {
                                     NSLog(@"selected yes");
-                                    [WebViewHelper executeWebViewCallbackInWebView:self.webView WithCallbackId:callbackId andContent:@{@"answer":@"Yes"}];
+                                    [WebViewHelper executeWebViewCallbackInWebView:self.webView withCallbackId:callbackId andContent:@{@"answer":@"Yes"}];
                                 }];
     [alertController addAction:yesAction];
     
@@ -156,7 +156,7 @@
                                handler:^(UIAlertAction * action)
                                {
                                    NSLog(@"selected no");
-                                   [WebViewHelper executeWebViewCallbackInWebView:self.webView WithCallbackId:callbackId andContent:@{@"answer":@"No"}];
+                                   [WebViewHelper executeWebViewCallbackInWebView:self.webView withCallbackId:callbackId andContent:@{@"answer":@"No"}];
                                }];
     [alertController addAction:noAction];
     
@@ -186,7 +186,7 @@ NSString *imagePickerCallbackId;
         NSString *pngDataBase64 = [pngData base64EncodedStringWithOptions:kNilOptions];
         // ^ don't split lines with NSDataBase64Encoding64CharacterLineLength
 
-        [WebViewHelper executeWebViewCallbackInWebView:self.webView WithCallbackId:imagePickerCallbackId andContent:@{@"pngDataBase64":pngDataBase64}];
+        [WebViewHelper executeWebViewCallbackInWebView:self.webView withCallbackId:imagePickerCallbackId andContent:@{@"pngDataBase64":pngDataBase64}];
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
     

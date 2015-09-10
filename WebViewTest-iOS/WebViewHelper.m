@@ -19,7 +19,7 @@
     }];
 }
 
-+(void)executeWebViewCallbackInWebView:(WKWebView *)webView WithCallbackId:(NSString *)callbackId andContent:(NSDictionary *) content {
++(void)executeWebViewCallbackInWebView:(WKWebView *)webView withCallbackId:(NSString *)callbackId andContent:(NSDictionary *) content {
     NSError *error = nil;
     NSData *returnData = [NSJSONSerialization dataWithJSONObject:@{ @"callbackId" : callbackId, @"content" : content } options:kNilOptions error:&error];
     NSString *returnString = [[NSString alloc] initWithBytes:[returnData bytes] length:returnData.length encoding:NSUTF8StringEncoding];
